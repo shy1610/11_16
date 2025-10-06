@@ -8,7 +8,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to right, #ff69b4, #ffc0cb); /* Pink gradient */
+      background: linear-gradient(to right, #ffb6c1, #ffc0cb); /* Pink love theme */
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
       color: white;
@@ -36,6 +36,7 @@
       transform: rotate(-45deg);
       animation: float 10s linear infinite;
       cursor: pointer;
+      z-index: 0;
     }
 
     .heart::before,
@@ -72,16 +73,21 @@
     }
 
     .burst {
-      animation: burst 0.4s ease-out forwards;
+      animation: bubbleBurst 0.5s ease-out forwards;
+      z-index: 1;
     }
 
-    @keyframes burst {
+    @keyframes bubbleBurst {
       0% {
         transform: scale(1) rotate(-45deg);
         opacity: 1;
       }
+      50% {
+        transform: scale(2.5) rotate(180deg);
+        opacity: 0.7;
+      }
       100% {
-        transform: scale(3) rotate(360deg);
+        transform: scale(0) rotate(360deg);
         opacity: 0;
       }
     }
@@ -101,14 +107,14 @@
 
       heart.addEventListener("click", () => {
         heart.classList.add("burst");
-        setTimeout(() => heart.remove(), 400);
+        setTimeout(() => heart.remove(), 500);
       });
 
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 10000);
     }
 
-    setInterval(createHeart, 500);
+    setInterval(createHeart, 400);
   </script>
 </body>
 </html>
