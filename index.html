@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love Message</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #00bfff, #00ff99);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 80px;
+      font-size: 2em;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    h2 {
+      margin-top: 20px;
+      font-size: 1.5em;
+      font-style: italic;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(to right, #00bfff 50%, #00ff99 50%);
+      transform: rotate(-45deg);
+      animation: float 10s linear infinite;
+      cursor: pointer;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: inherit;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 15px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        top: 100%;
+        left: calc(100% * var(--x));
+        opacity: 1;
+      }
+      100% {
+        top: -50px;
+        left: calc(100% * var(--x));
+        opacity: 0;
+      }
+    }
+
+    .burst {
+      animation: burst 0.4s ease-out forwards;
+    }
+
+    @keyframes burst {
+      0% {
+        transform: scale(1) rotate(-45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(3) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>To the world you may be one person,<br>but to me you are the world</h1>
+  <h2>Dharsh.....Shylu loves you 💙💚</h2>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.setProperty("--x", Math.random());
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.top = "100%";
+
+      heart.addEventListener("click", () => {
+        heart.classList.add("burst");
+        setTimeout(() => heart.remove(), 400);
+      });
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
